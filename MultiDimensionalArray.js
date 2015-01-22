@@ -20,11 +20,12 @@ module.exports = {
   generate_2d: function (outLenArg, inLenArg) {
     var result = [];
     var outerArrLength;
-    var innerArrLength;
+    var innerArrLength = 3;
 
     if (outLenArg === undefined) {
       outerArrLength = 3;
-      innerArrLength = 3;
+    } else if (typeof outLenArg === 'number') {
+      outerArrLength = outLenArg;
     }
 
     while (result.length < outerArrLength) {
