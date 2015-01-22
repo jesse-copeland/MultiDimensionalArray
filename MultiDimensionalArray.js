@@ -1,17 +1,17 @@
 module.exports = {
-  generate_1d: function (count) {
+  generate_1d: function (arrLenArg) {
     var result = [];
-    var elemCount;
+    var arrLength;
 
-    if (count === undefined) {
-      elemCount = 3;
-    } else if (typeof count === 'number') {
-      elemCount = count;
+    if (arrLenArg === undefined) {
+      arrLength = 3;
+    } else if (typeof arrLenArg === 'number') {
+      arrLength = arrLenArg;
     } else {
       return [];
     }
     
-    while (result.length < elemCount) {
+    while (result.length < arrLength) {
       result.push(random01());
     }
   
