@@ -27,7 +27,7 @@ describe("Call MultiDimensionalArray.generate_1d method with ⇒", function() {
   });
 
   it("⇒ one numeric argument mutiple time. It should generate arrays that are not equal (i.e. random).", function() {
-    var baseArray = mda.generate_1d(30);
+    var testResult = mda.generate_1d(30);
     var compareArrays = [];
     
     while (compareArrays.length < 5) {
@@ -35,60 +35,150 @@ describe("Call MultiDimensionalArray.generate_1d method with ⇒", function() {
     }
 
     for (var i = 0; i < compareArrays.length; i++) {
-      expect(baseArray).to.not.deep.equal(compareArrays[i]);
+      expect(testResult).to.not.deep.equal(compareArrays[i]);
     }
-    // console.log('compareArrays', compareArrays);
   });
 
 });
 
 describe("Call MultiDimensionalArray.generate_2d method with ⇒", function() {
   it("⇒ no arguments. It should return an array (length 3) each containing arrays (length 3) with random boolean values.", function() {
-    var baseArray = [];
-    while (baseArray.length < 3) {
-      baseArray.push(mda.generate_1d());
-    }
-    // console.log(baseArray);
-    expect(mda.generate_2d()).to.have.length(3);
+    var testResult = mda.generate_2d(); //
 
-    for (var i = 0; i < baseArray.length; i++) {
-      expect(baseArray[i]).to.have.length(3);
+    expect(testResult).to.have.length(3);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(3);
     }
 
   });
 
   it("⇒ one numeric argument (n). It should return an array length (n), containing arrays that are length (n) containing random boolean values.", function() {
-    var baseArray = [];
     var singleNumArg = 5;
     var innerArrayLen = 3;
+    var testResult = mda.generate_2d(singleNumArg);
 
-    while (baseArray.length < singleNumArg) {
-      baseArray.push(mda.generate_1d(innerArrayLen));
-    }
+    expect(testResult).to.have.length(singleNumArg);
 
-    expect(mda.generate_2d(singleNumArg)).to.have.length(singleNumArg);
-
-    for (var i = 0; i < baseArray.length; i++) {
-      expect(baseArray[i]).to.have.length(innerArrayLen);
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(innerArrayLen);
     }
 
   });
 
   it("⇒ two numeric arguments (n, m). It should return an array length (n), containing arrays that are length (m)", function() {
-    var baseArray = [];
     var firstNumArg = 5;
     var secondNumArg = 4;
+    var testResult = mda.generate_2d(firstNumArg, secondNumArg);
 
-    while (baseArray.length < firstNumArg) {
-      baseArray.push(mda.generate_1d(secondNumArg));
+    expect(testResult).to.have.length(firstNumArg);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(secondNumArg);
     }
-    // console.log(mda.generate_2d(firstNumArg,secondNumArg));
-    expect(mda.generate_2d(firstNumArg, secondNumArg)).to.have.length(firstNumArg);
+  });
 
-    for (var i = 0; i < baseArray.length; i++) {
-      expect(baseArray[i]).to.have.length(secondNumArg);
+  it("⇒ an argument containing a string. It should return an empty array.", function() {
+    var stringArg = 'potato';
+    var testResult = mda.generate_2d(stringArg);
+
+    expect(testResult).to.deep.equal([]);
+  });
+
+  it("⇒ two arguments with the second containing a string. It should return an empty array.", function() {
+    var firstNumArg = '5';
+    var stringArg = 'potato';
+    var testResult = mda.generate_2d(firstNumArg, stringArg);
+
+    expect(testResult).to.deep.equal([]);
+  });
+
+  
+});
+
+describe("Call MultiDimensionalArray.generate_3d method with ⇒", function() {
+  it("⇒ no arguments. It should return an array (length 3), containing 3 arrays, each containing arrays (length 3) with random boolean values.", function() {
+    var defaultLength = 3;
+    var testResult = mda.generate_3d();
+    
+    expect(testResult).to.have.length(3);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(3);
+      for (var j = 0; j < testResult[i].length; j++) {
+        expect(testResult[i][j]).to.have.length(3);
+      }
     }
+  });
 
+  it("⇒ one numeric argument (n). It should return an array length (n), containing arrays that are length (3) containing arrays that are length (3) that contain random boolean values.", function() {
+    var singleNumArg = 5;
+    var innerArrayLen = 3;
+    var testResult = mda.generate_3d(singleNumArg);
+
+    expect(testResult).to.have.length(singleNumArg);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(3);
+      for (var j = 0; j < testResult[i].length; j++) {
+        expect(testResult[i][j]).to.have.length(3);
+      }
+    }
+  });
+
+  it("⇒ two numeric arguments (n, m). It should return an array length (n), containing arrays that are length (m) containing arrays that are length (3) that contain random boolean values.", function() {
+    var firstNumArg = 5;
+    var secondNumArg = 4;
+    var testResult = mda.generate_3d(firstNumArg, secondNumArg);
+
+    expect(testResult).to.have.length(firstNumArg);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(secondNumArg);
+      for (var j = 0; j < testResult[i].length; j++) {
+        expect(testResult[i][j]).to.have.length(3);
+      }
+    }
+  });
+
+  it("⇒ three numeric arguments (n, m, o). It should return an array length (n), containing arrays that are length (m) containing arrays that are length (o) that contain random boolean values.", function() {
+    var firstNumArg = 5;
+    var secondNumArg = 4;
+    var thirdNumArg = 8;
+    var testResult = mda.generate_3d(firstNumArg, secondNumArg, thirdNumArg);
+
+    expect(testResult).to.have.length(firstNumArg);
+
+    for (var i = 0; i < testResult.length; i++) {
+      expect(testResult[i]).to.have.length(secondNumArg);
+      for (var j = 0; j < testResult[i].length; j++) {
+        expect(testResult[i][j]).to.have.length(thirdNumArg);
+      }
+    }
+  });
+
+  it("⇒ an argument containing a string. It should return an empty array.", function() {
+    var stringArg = 'potato';
+    var testResult = mda.generate_3d(stringArg);
+
+    expect(testResult).to.deep.equal([]);
+  });
+
+  it("⇒ two arguments, the first containing a number and the second containing a string. It should return an empty array.", function() {
+    var firstNumArg = 5;
+    var stringArg = 'potato';
+    var testResult = mda.generate_3d(firstNumArg, stringArg);
+
+    expect(testResult).to.deep.equal([]);
+  });
+
+  it("⇒ three arguments, the first and second containing numbers and the third containing a string. It should return an empty array.", function() {
+    var firstNumArg = 5;
+    var secondNumArg = 6;
+    var stringArg = 'potato';
+    var testResult = mda.generate_3d(firstNumArg, secondNumArg, stringArg);
+
+    expect(testResult).to.deep.equal([]);
   });
   
 });
