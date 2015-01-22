@@ -12,7 +12,7 @@ module.exports = {
     }
     
     while (result.length < arrLength) {
-      result.push(random01());
+      result.push(this.random01());
     }
   
     return result;
@@ -79,9 +79,14 @@ module.exports = {
     }
 
     return result;
+  },
+  random01: function () {
+    return Math.round(Math.random());
+  },
+  count: function (array) {
+    return array.reduce(function (prev, curr) {
+      return prev + curr;
+    },0);
   }
-};
 
-function random01 () {
-  return Math.round(Math.random());
-}
+};
