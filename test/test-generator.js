@@ -57,7 +57,7 @@ describe("Call MultiDimensionalArray.generate_2d method with ⇒", function() {
 
   });
 
-  it("⇒ one numeric argument (n). It should return an array (length n), containing arrays that are (length n) containing random boolean values.", function() {
+  it("⇒ one numeric argument (n). It should return an array length (n), containing arrays that are length (n) containing random boolean values.", function() {
     var baseArray = [];
     var singleNumArg = 5;
     var innerArrayLen = 3;
@@ -70,6 +70,23 @@ describe("Call MultiDimensionalArray.generate_2d method with ⇒", function() {
 
     for (var i = 0; i < baseArray.length; i++) {
       expect(baseArray[i]).to.have.length(innerArrayLen);
+    }
+
+  });
+
+  it("⇒ two numeric arguments (n, m). It should return an array length (n), containing arrays that are length (m)", function() {
+    var baseArray = [];
+    var firstNumArg = 5;
+    var secondNumArg = 4;
+
+    while (baseArray.length < firstNumArg) {
+      baseArray.push(mda.generate_1d(secondNumArg));
+    }
+    // console.log(mda.generate_2d(firstNumArg,secondNumArg));
+    expect(mda.generate_2d(firstNumArg, secondNumArg)).to.have.length(firstNumArg);
+
+    for (var i = 0; i < baseArray.length; i++) {
+      expect(baseArray[i]).to.have.length(secondNumArg);
     }
 
   });

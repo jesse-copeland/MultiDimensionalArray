@@ -1,10 +1,10 @@
 module.exports = {
   generate_1d: function (arrLenArg) {
     var result = [];
-    var arrLength;
+    var arrLength = 3;
 
     if (arrLenArg === undefined) {
-      arrLength = 3;
+      // Do nothing when undefined.
     } else if (typeof arrLenArg === 'number') {
       arrLength = arrLenArg;
     } else {
@@ -19,13 +19,19 @@ module.exports = {
   },
   generate_2d: function (outLenArg, inLenArg) {
     var result = [];
-    var outerArrLength;
+    var outerArrLength = 3;
     var innerArrLength = 3;
 
     if (outLenArg === undefined) {
-      outerArrLength = 3;
+      // Do nothing when undefined.
     } else if (typeof outLenArg === 'number') {
       outerArrLength = outLenArg;
+    }
+
+    if (inLenArg === undefined) {
+      // Do nothing when undefined.
+    } else if (typeof inLenArg === 'number') {
+      innerArrLength = inLenArg;
     }
 
     while (result.length < outerArrLength) {
